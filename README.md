@@ -27,3 +27,4 @@ The project uses GNU Makefile for build and to run services
 To build the whole project execute this line from "sources" folder:
 `$ make`
 
+There is a similar project available for C# https://github.com/pbakota/mt-microservice-kafka
