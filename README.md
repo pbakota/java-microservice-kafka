@@ -29,6 +29,8 @@ The components which are used
 * Kafka
 * PostgreSQL
 
+There is also an implementation of an async controller for orders just to demonstrate how to set up async execution in microservices. Other services also can be extended with async execution in a similar way.
+
 ## Build the project
 
 The project uses GNU Makefile for build and to run services
@@ -54,7 +56,7 @@ You can test the reverting by not specifying the "Address", the delivery part wi
 
 You can check the latest delivery by using GET http://127.0.0.1:8084/deliveries?size=1&sort=id,desc (see "Get last 5 delivery" part)
 
-### Create order
+#### Create order
 ```
 POST http://127.0.0.1:8080/gateway/orders
 Content-Type: application/json
@@ -68,17 +70,17 @@ Content-Type: application/json
 }
 ```
 
-### Get last 5 order
+#### Get last 5 order
 ```
 GET http://127.0.0.1:8080/gateway/orders?size=5&order=id,desc
 ```
 
-### Get last 5 payment
+#### Get last 5 payment
 ```
 GET http://127.0.0.1:8080/gateway/payments?size=5&order=id,desc
 ```
 
-### Add stock item
+#### Add stock item
 ```
 POST http://127.0.0.1:8080/gateway/items
 Content-Type: application/json
@@ -89,21 +91,43 @@ Content-Type: application/json
 }
 ```
 
-### Get stock item
+#### Get stock item
 ```
 GET http://127.0.0.1:8080/gateway/items/Product%201
 ```
 
-### Get top 5 stock items
+#### Get top 5 stock items
 ```
 GET http://127.0.0.1:8080/gateway/items?size=5&order=id,desc
 ```
 
-### Get last 5 delivery
+#### Get last 5 delivery
 GET http://127.0.0.1:8080/gateway/deliveries?size=5&order=id,desc
+
+### To test async execution with API endpoints
+
+#### Create order (async)
+```
+POST http://127.0.0.1:8080/gateway/async/orders
+Content-Type: application/json
+
+{
+    "Item": "Product 1",
+    "Quantity": 1,
+    "Amount": 3,
+    "PaymentMethod": "CreditCard",
+    "Address": "address 1"
+}
+```
+
+#### Get last 5 order (async)
+```
+GET http://127.0.0.1:8080/gateway/async/orders?size=5&order=id,desc
+```
 
 ## Deployment with Docker
 The directory "docker" contains all the files needed for docker deployment.
+
 
 Build the whole project, then copy the files from their corresponding target folders for the corrsponding target folders under "docker"
 
