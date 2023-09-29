@@ -1,0 +1,60 @@
+version: '3.7'
+
+services:
+  java-microservice-orders:
+    restart: unless-stopped
+    container_name: java-microservice-orders
+    image: java-microservice-orders:dev
+    environment:
+      - Kafka__BootstrapServers=${BOOTSTRAP_SERVERS:-localhost:9092}
+    volumes:
+      - ./config/orders/application.properties:/app/application.properties:r
+    expose:
+      - "8081"
+
+  java-microservice-payments:
+    restart: unless-stopped
+    container_name: java-microservice-payments
+    image: java-microservice-payments:dev
+    environment:
+      - Kafka__BootstrapServers=${BOOTSTRAP_SERVERS:-localhost:9092}
+    volumes:
+      - ./config/payments/application.properties:/app/application.properties:r
+    expose:
+      - "8082"
+
+  java-microservice-stock:
+    restart: unless-stopped
+    container_name: java-microservice-stock
+    image: java-microservice-stock:dev
+    environment:
+      - Kafka__BootstrapServers=${BOOTSTRAP_SERVERS:-localhost:9092}
+    volumes:
+      - ./config/stock/application.properties:/app/application.properties:r
+    expose:
+      - "8083"
+
+  java-microservice-delivery:
+    restart: unless-stopped
+    container_name: java-microservice-delivery
+    image: java-microservice-delivery:dev
+    environment:
+      - Kafka__BootstrapServers=${BOOTSTRAP_SERVERS:-localhost:9092}
+    volumes:
+      - ./config/delivery/application.properties:/app/application.properties:r
+    expose:
+      - "8084"
+
+  java-microservice-gw:
+    restart: unless-stopped
+    container_name: java-microservice-gw
+    image: java-microservice-gw:dev
+    volumes:
+      - ./config/gw/application.properties:/app/application.properties:r
+    ports:
+      - "0.0.0.0:9180:8080"
+    depends_on:
+      - java-microservice-orders
+      - java-microservice-payments
+      - java-microservice-stock
+      - java-microservice-delivery

@@ -37,7 +37,7 @@ public class StockController {
     }
 
     @PostMapping("/items")
-    public ResponseEntity addStock(@RequestBody StockDto stock) {
+    public ResponseEntity<StockDto> addStock(@RequestBody StockDto stock) {
         var stockEntity = stockService.addStock(stock);
         return ResponseEntity.ok(mapper.toStockDto(stockEntity));
     }

@@ -14,8 +14,9 @@ import rs.lab.orders.dto.mapping.OrderMapper;
 import rs.lab.orders.services.OrdersService;
 
 import java.util.Collection;
+import java.util.concurrent.CompletableFuture;
 
-@RestController("/")
+@RestController
 public class OrdersController {
 
     @Autowired

@@ -1,0 +1,51 @@
+@host=http://127.0.0.1:8080
+
+### Create order
+POST {{host}}/gateway/orders
+Content-Type: application/json
+
+{
+    "item": "Product 1",
+    "quantity": 1,
+    "amount": 3,
+    "address": "Foo bar 1"
+}
+
+### Add stock items
+POST {{host}}/gateway/items
+Content-Type: application/json
+
+{
+    "item": "Product 2",
+    "quantity": 30
+}
+
+### Get last 5 order
+GET {{host}}/gateway/orders?size=5&sort=id,desc
+
+### Get last 5 payment
+GET {{host}}/gateway/payments?size=5&sort=id,desc
+
+### Get stock items
+GET {{host}}/gateway/items
+
+### Get last 5 delivery
+GET {{host}}/gateway/deliveries?size=5&sort=id,desc
+
+#### Async
+
+### Create order
+
+POST {{host}}/gateway/async/orders
+Content-Type: application/json
+
+{
+    "item": "Product 1",
+    "quantity": 1,
+    "amount": 3,
+    "address": "Foo bar 1"
+}
+
+### Get last 5 order
+GET {{host}}/gateway/async/orders?size=5&sort=id,desc
+
