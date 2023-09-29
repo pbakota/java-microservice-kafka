@@ -146,6 +146,10 @@ Content-Type: application/json
 **NOTE:**
 Before you start the stack make it sure that the configuration entries for Kafka and PostgreSQL are properly set in the `config/**/application.properties` file
 
+* _spring.kafka.bootstrap-servers_ To specify Kafka's bootstrap server
+* _spring.datasource.*_ For PostgreSQL settings
+  
+
 
 ## Footnote
 
