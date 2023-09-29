@@ -1,4 +1,4 @@
-# Demo project that implements miroservices using Spring Boot 3, Spring Cloud Gateway and Kafka
+# Demo project that implements miroservices using Spring Boot 3, Spring Cloud Gateway and Kafka with example of async controller implementation
 
 This project is a small demo that demonstrates the microservice architecture with Java Spring boot v3 and Kafka. The microservices communicate with events pushed to Kafka in a publish/subscribe manner. Each microservice is a separate entity, they do not have any direct connection between them, the microservices manage their own separate databases as well (NOTE: this demo uses the same PostgreSQL schema). Also, the demo implements a very basic API gateway using _spring.cloud.gateway_ (https://spring.io/projects/spring-cloud-gateway), to demonstrate how a unified API platform can be presented to the end users and which can be used for API authentication and rate limiting (not included in this demonstration).
 
