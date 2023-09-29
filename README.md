@@ -4,7 +4,7 @@ This project demonstrates a small microservice architecture using SpringBoot and
 
 ## Architecture
 
-[!Alt text](https://github.com/pbakota/java-microservice-kafka/raw/main/figures/figure-1.svg)
+![Alt text](https://github.com/pbakota/java-microservice-kafka/raw/main/figures/figure-1.svg)
 
 The architecure is simple and strighforward. The services are completelly separated from each other, the only communication channel between them is
 through Kafka message bus. Each service implements a small rest api to retrive the stored data and to accept order requests. Each service can have a separate DB storage (NOTE: this demo uses the same PostgreSQL schema)
